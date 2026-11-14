@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 384885861}
   m_Layer: 0
   m_Name: RightWallCollider
-  m_TagString: Untagged
+  m_TagString: Bounceable wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 397821928}
   m_Layer: 0
   m_Name: LeftWallCollider
-  m_TagString: Untagged
+  m_TagString: Bounceable wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -691,8 +691,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rb: {fileID: 1358737510}
   speed: 20
+  dashSpeed: 50
   maxspeedx: 20
   maxspeedy: 500
+  facingLeft: 0
   jump: 10
   isgrounddistance: 1.5
   secondssinceground: 0.25
