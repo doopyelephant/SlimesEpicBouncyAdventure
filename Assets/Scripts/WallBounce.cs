@@ -17,7 +17,7 @@ public class WallBounce : MonoBehaviour
         // move positon of collider to the right side of screem
         RightWallCollider.transform.position = main.ScreenToWorldPoint(new Vector3(main.pixelWidth - 1, 0.5f * main.pixelHeight,0f));
         RightWallCollider.transform.Translate(offsetrightx, 0, 0);
-        
+
         // set offset of left collider
         float offsetleftx = -(LeftWallCollider.transform.localScale.x * LeftWallCollider.size.x) * 0.5f;
         // move position of collider to the left side of screen
