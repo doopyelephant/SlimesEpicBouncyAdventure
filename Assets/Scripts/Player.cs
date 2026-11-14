@@ -4,7 +4,14 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
+
+    // Components
+    [Header("Components")]
     public Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+
+    [Header("Movement Details")]
     public float speed;
     public float dashSpeed;
 
@@ -15,6 +22,7 @@ public class Player : MonoBehaviour
 
     public float jump;
 
+    [Header("Jump Details")]
     public float isgrounddistance;
     public float secondssinceground;
     private float timeonground = 0f;
@@ -23,8 +31,7 @@ public class Player : MonoBehaviour
     public float jumpcooldown;
 
     private int layermask;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,23 +42,29 @@ public class Player : MonoBehaviour
     void Update()
     {
         spriteRenderer.flipX = facingLeft;
+
+        HandleAnimation();
+        HandleMovement();
+        HandleDash();
+        HandleJump();
+    }
+
+    private void HandleMovement()
+    {
+        float hor = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+
+        if (hor != 0) rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse);
+        if (hor > 0) facingLeft = false;
+        else if (hor < 0) facingLeft = true;
+    }
+
+    private void HandleAnimation()
+    {
         animator.SetFloat("Xvelocity", rb.linearVelocity.x);
-        timeonground += Time.deltaTime;
-        sincejump += Time.deltaTime;
-        float hor =  Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
-        
-        if (hor != 0)
-        {
-            rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse);
-        }
-        if (hor > 0)
-        {
-            facingLeft = false;
-        }
-        else if (hor < 0)
-        {
-            facingLeft = true;
-        }
+    }
+
+    private void HandleDash()
+    {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (facingLeft)
@@ -65,9 +78,14 @@ public class Player : MonoBehaviour
                 rb.AddForce(new Vector2(dashSpeed, 0), ForceMode2D.Impulse);
             }
         }
+    }
 
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(transform.position, Vector2.down, isgrounddistance, layermask);
+    private void HandleJump()
+    {
+        timeonground += Time.deltaTime;
+        sincejump += Time.deltaTime;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, isgrounddistance, layermask);
         if (hit.collider != null)
         {
             timeonground = 0f;
@@ -80,8 +98,11 @@ public class Player : MonoBehaviour
             sincejump = 0f;
             rb.AddForce(new Vector2(0, jump), ForceMode2D.Impulse);
         }
-        rb.linearVelocity = new Vector2(Math.Clamp(rb.linearVelocityX, -maxspeedx, maxspeedx),Math.Clamp(rb.linearVelocityY, -maxspeedy, maxspeedy));
+        rb.linearVelocity = new Vector2(Math.Clamp(rb.linearVelocityX, -maxspeedx, maxspeedx), Math.Clamp(rb.linearVelocityY, -maxspeedy, maxspeedy));
     }
+
+
+    // Gizmos
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
