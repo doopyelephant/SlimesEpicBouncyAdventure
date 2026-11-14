@@ -32,9 +32,9 @@ public class WallBounce : MonoBehaviour
         targetviewpos = main.transform.position;
         camoffset = main.transform.position.y - transform.position.y;
         // set offset of right collider
-        offsetrightx = RightWallCollider.transform.localScale.x * RightWallCollider.size.x * 0.5f;
-        // set offset of left collider
-        offsetleftx = -(LeftWallCollider.transform.localScale.x * LeftWallCollider.size.x) * 0.5f;
+        offsetrightx = (RightWallCollider.transform.localScale.x * RightWallCollider.size.x-1) * 0.4f;
+        // set offset of left collide
+        offsetleftx = -(LeftWallCollider.transform.localScale.x * LeftWallCollider.size.x-1) * 0.4f;
         
         
         // move positon of collider to the right side of screem
@@ -56,7 +56,7 @@ public class WallBounce : MonoBehaviour
     {
         targetviewpos = new  Vector3(targetviewpos.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, targetviewpos.z);
         main.transform.position = new Vector3(main.transform.position.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, main.transform.position.z);
-        transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 - 0.1f,RightWallCollider.transform.position.x - offsetrightx * 2 + 0.1f),transform.position.y,transform.position.z);
+        transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 + 0.1f,RightWallCollider.transform.position.x - offsetrightx * 2 - 0.1f),transform.position.y,transform.position.z);
         if (Vector3.Distance(main.transform.position, targetviewpos) > 1f)
         {
             main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position) +
