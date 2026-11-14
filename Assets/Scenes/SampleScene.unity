@@ -2547,7 +2547,7 @@ PrefabInstance:
       objectReference: {fileID: 397821928}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewportspeedlag
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: RightWallCollider
