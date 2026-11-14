@@ -1,4 +1,6 @@
 using System;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,6 +15,7 @@ public class Player : MonoBehaviour
     [Header("Movement Details")]
     public float speed;
     public float dashSpeed;
+    public bool isDashing = false;
 
     public float maxspeedx;
     public float maxspeedy;
@@ -53,8 +56,8 @@ public class Player : MonoBehaviour
         float hor = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
 
         if (hor != 0) rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse);
-        if (hor > 0) facingLeft = false;
-        else if (hor < 0) facingLeft = true;
+        if (rb.linearVelocityX > 0) facingLeft = false;
+        else if (rb.linearVelocityX < 0) facingLeft = true;
     }
 
     private void HandleAnimation()
@@ -79,6 +82,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void reverseVelocity()
+    {
+        Debug.Log("Reversed velocity");
+        
+    }
+
     private void HandleJump()
     {
         timeonground += Time.deltaTime;
@@ -89,7 +98,7 @@ public class Player : MonoBehaviour
         {
             timeonground = 0f;
             Debug.DrawLine(transform.position, hit.point, Color.red);
-            Debug.Log(Vector3.Distance(transform.position, hit.point));
+            //Debug.Log(Vector3.Distance(transform.position, hit.point));
         }
 
         if (Input.GetButtonDown("Jump") && timeonground < secondssinceground && sincejump > jumpcooldown)
