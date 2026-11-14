@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     private float timeonground = 0f;
     private float sincejump = 0f;
 
+    private bool isGrounded = true;
+
     public float jumpcooldown;
 
     private int layermask;
@@ -70,6 +72,8 @@ public class Player : MonoBehaviour
     private void HandleAnimation()
     {
         animator.SetFloat("Xvelocity", rb.linearVelocity.x);
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
+        animator.SetBool("IsGrounded", isGrounded);
     }
 
     private void HandleDash()
@@ -95,6 +99,8 @@ public class Player : MonoBehaviour
         sincejump += Time.deltaTime;
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, isgrounddistance, layermask);
+        isGrounded = hit;
+
         if (hit.collider != null)
         {
             timeonground = 0f;
