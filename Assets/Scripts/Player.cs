@@ -17,10 +17,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hor =  Input.GetAxisRaw("Horizontal");
+        float hor =  Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
         if (hor != 0)
         {
-            rb.AddForce(new Vector2(hor * speed, 0), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse);
         }
 
         rb.linearVelocity = new Vector2(Math.Clamp(rb.linearVelocityX, -maxspeedx, maxspeedx),Math.Clamp(rb.linearVelocityY, -maxspeedy, maxspeedy));
