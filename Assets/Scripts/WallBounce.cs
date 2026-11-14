@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WallBounce : MonoBehaviour
 {
@@ -15,16 +16,22 @@ public class WallBounce : MonoBehaviour
     float offsetleftx;
     public float ymul;
     public float yadd;
+
+    public float viewportmove;
+
+    private Vector3 targetviewpos;
+
+    public float viewspeed;
+    public float randomstrength;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        targetviewpos = main.transform.position;
         // set offset of right collider
         offsetrightx = RightWallCollider.transform.localScale.x * RightWallCollider.size.x * 0.5f;
         // set offset of left collider
         offsetleftx = -(LeftWallCollider.transform.localScale.x * LeftWallCollider.size.x) * 0.5f;
-        
-        // set main camera
-        main = Camera.main;
         
         
         // move positon of collider to the right side of screem
@@ -38,12 +45,23 @@ public class WallBounce : MonoBehaviour
         //set collider to have camera as parent
         RightWallCollider.transform.parent = main.transform;
         LeftWallCollider.transform.parent = main.transform;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 - 0.1f,RightWallCollider.transform.position.x - offsetrightx * 2 + 0.1f),transform.position.y,transform.position.z);
+        if (Vector3.Distance(main.transform.position, targetviewpos) > 1f)
+        {
+            main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position) +
+                                       new Vector3(Random.Range(-randomstrength, randomstrength),
+                                           Random.Range(-randomstrength, randomstrength), 0);
+        }
+        else if (Vector3.Distance(main.transform.position, targetviewpos) > 0.1f)
+        {
+            main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -51,9 +69,11 @@ public class WallBounce : MonoBehaviour
         if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
         {
             Debug.Log("Collided with wall (Tag: Bounceable wall)");
+
+            targetviewpos += new Vector3(transform.position.x - main.transform.position.x > 0 ? viewportmove : -viewportmove, 0, 0);
             rb.linearVelocityX = -rb.linearVelocityX * dashamount;
             rb.linearVelocityY += yadd;
-            rb.linearVelocityY = rb.linearVelocityY * ymul;
+            rb.linearVelocityY *= ymul;
         }
     }
 }

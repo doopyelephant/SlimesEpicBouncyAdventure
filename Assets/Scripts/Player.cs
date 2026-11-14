@@ -71,6 +71,10 @@ public class Player : MonoBehaviour
         if (hor != 0) rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse);
         if (rb.linearVelocityX > 0) facingLeft = false;
         else if (rb.linearVelocityX < 0) facingLeft = true;
+        if (Math.Abs(rb.linearVelocity.x) < 0.1f)
+        {
+            facingLeft = hor < 0;
+        }
     }
 
     private void HandleAnimation()
