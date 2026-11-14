@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Clips/PlayerJump.anim.meta
+guid: d0e7a622c7d9d344c857619c0100b8b6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+========
+guid: 27682f349d2065b4783fe87b3992ec12
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>>> 894e43fe0cf54902c03c71d64d25581e334de873:Assets/Graphics/TileMap/TileSet_1.asset.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

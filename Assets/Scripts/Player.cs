@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
 
     private int layermask;
     private int mapamount = 0;
+    public ParticleSystem particles;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
+        particles.Play();
         if (other.gameObject.GetComponent(typeof(MapPiece)) != null)
         {
             Destroy(other.gameObject);

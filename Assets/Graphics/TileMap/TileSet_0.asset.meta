@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Clips/PlayerFall.anim.meta
+guid: ca938eaddf2fee4419cd7b9dfc049662
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+========
+guid: 78ca891c044a41442b9f07779550d38e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>>> 894e43fe0cf54902c03c71d64d25581e334de873:Assets/Graphics/TileMap/TileSet_0.asset.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
