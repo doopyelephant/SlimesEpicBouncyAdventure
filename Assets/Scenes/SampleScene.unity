@@ -462,7 +462,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -632,7 +632,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -866,6 +866,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3000979886817411149
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
     - rid: 4437282916281090061
       type: {class: Light2DProviderSources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
@@ -873,7 +877,7 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 3000979886817411149
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,6 +1636,11 @@ SpriteRenderer:
 --- !u!1 &1007751000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8740729050117921532, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+  m_PrefabInstance: {fileID: 3892081293664986761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1007751003 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1015080487983500248, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
   m_PrefabInstance: {fileID: 3892081293664986761}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009772354
@@ -2479,6 +2488,38 @@ PrefabInstance:
     - target: {fileID: 8740729050117921532, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1007751003}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: main
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: yadd
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: ymul
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: viewspeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: viewportmove
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: dashthreshold
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: randomstrength
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: LeftWallCollider
