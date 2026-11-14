@@ -7,6 +7,9 @@ public class WallBounce : MonoBehaviour
     public BoxCollider2D LeftWallCollider;
 
     public Camera main;
+
+    bool wallBounceableCollided = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,5 +36,14 @@ public class WallBounce : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bounceable wall"))
+        {
+            Debug.Log("Collided with wall (Tag: Bounceable wall)");
+            wallBounceableCollided = true;
+        }
     }
 }
