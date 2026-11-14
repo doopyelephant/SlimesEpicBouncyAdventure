@@ -86,7 +86,7 @@ public class WallBounce : MonoBehaviour
             player.dashAvailable = true;
         }
     }
-    void OnTriggerExit(Collider2D other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
         {
