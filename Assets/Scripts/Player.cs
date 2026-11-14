@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public float jumpcooldown;
 
     private int layermask;
+    public Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Xvelocity", rb.linearVelocity.x);
         timeonground += Time.deltaTime;
         sincejump += Time.deltaTime;
         float hor =  Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
