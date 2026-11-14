@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public float jumpcooldown;
 
     private int layermask;
+    private int mapamount = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,6 +47,15 @@ public class Player : MonoBehaviour
         HandleMovement();
         HandleDash();
         HandleJump();
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.GetComponent(typeof(MapPiece)) != null)
+        {
+            Destroy(other.gameObject);
+            mapamount += 1;
+        }
     }
 
     private void HandleMovement()
