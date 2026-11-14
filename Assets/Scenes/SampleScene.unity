@@ -958,6 +958,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3000979886817411149
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
     - rid: 4437282916281090061
       type: {class: Light2DProviderSources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
@@ -965,7 +969,7 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 3000979886817411149
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -3703,7 +3707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3781,6 +3785,10 @@ PrefabInstance:
       propertyPath: LeftWallCollider
       value: 
       objectReference: {fileID: 397821928}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: viewportspeedlag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: RightWallCollider
       value: 
