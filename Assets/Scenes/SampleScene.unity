@@ -2467,7 +2467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2545,6 +2545,10 @@ PrefabInstance:
       propertyPath: LeftWallCollider
       value: 
       objectReference: {fileID: 397821928}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: viewportspeedlag
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: RightWallCollider
       value: 
