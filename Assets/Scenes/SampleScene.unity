@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 384885860}
   - component: {fileID: 384885861}
   m_Layer: 0
-  m_Name: Collider (1)
+  m_Name: RightWallCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 397821927}
   - component: {fileID: 397821928}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: LeftWallCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,7 +528,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
