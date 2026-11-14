@@ -1,0 +1,12 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Markdown personal settings
+/markdown.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.PrototypeBouncingSlime.iml
