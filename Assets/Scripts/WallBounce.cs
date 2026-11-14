@@ -70,6 +70,7 @@ public class WallBounce : MonoBehaviour
         {
             main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position);
         }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
