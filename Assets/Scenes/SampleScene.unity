@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 1358737510}
   - component: {fileID: 1358737511}
   - component: {fileID: 1358737512}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,6 +692,10 @@ MonoBehaviour:
   speed: 20
   maxspeedx: 20
   maxspeedy: 500
+  jump: 10
+  isgrounddistance: 1.5
+  secondssinceground: 0.25
+  jumpcooldown: 0.3
 --- !u!212 &1358737508
 SpriteRenderer:
   serializedVersion: 3
@@ -782,7 +786,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 1.75
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
