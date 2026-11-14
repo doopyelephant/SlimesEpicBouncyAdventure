@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public WallBounce wallBounce;
 
     [Header("Movement Details")]
     public float speed;
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
     public bool facingLeft;
 
     public float jump;
+    public bool dashAvailable = true;
 
     [Header("Jump Details")]
     public float isgrounddistance;
@@ -52,6 +55,12 @@ public class Player : MonoBehaviour
         HandleMovement();
         HandleDash();
         HandleJump();
+        
+        if (isGrounded)
+        {
+            dashAvailable = true;
+            wallBounce.dashAmount = 0;
+        }
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -86,8 +95,21 @@ public class Player : MonoBehaviour
 
     private void HandleDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && dashAvailable && wallBounce.dashAmount < wallBounce.maxDashAmount)
         {
+            if (facingLeft)
+            {
+                rb.AddForce(new Vector2(-dashSpeed, 0), ForceMode2D.Impulse);
+            }
+            else if (facingLeft == false)
+            {
+                rb.AddForce(new Vector2(dashSpeed, 0), ForceMode2D.Impulse);
+            }
+            wallBounce.dashAmount ++;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == false && dashAvailable && wallBounce.dashAmount < wallBounce.maxDashAmount)
+        {   
+            dashAvailable = false;
             if (facingLeft)
             {
                 Debug.Log("dash inputted");
@@ -98,13 +120,8 @@ public class Player : MonoBehaviour
                 Debug.Log("dash inputted");
                 rb.AddForce(new Vector2(dashSpeed, 0), ForceMode2D.Impulse);
             }
+            wallBounce.dashAmount ++;
         }
-    }
-
-    public void reverseVelocity()
-    {
-        Debug.Log("Reversed velocity");
-        
     }
 
     private void HandleJump()
