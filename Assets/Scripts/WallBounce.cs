@@ -51,6 +51,7 @@ public class WallBounce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        main.transform.position = new Vector3(main.transform.position.x, transform.position.y, main.transform.position.z);
         transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 - 0.1f,RightWallCollider.transform.position.x - offsetrightx * 2 + 0.1f),transform.position.y,transform.position.z);
         if (Vector3.Distance(main.transform.position, targetviewpos) > 1f)
         {
