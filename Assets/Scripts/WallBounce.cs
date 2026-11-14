@@ -10,7 +10,10 @@ public class WallBounce : MonoBehaviour
 
     public Camera main;
     public Rigidbody2D rb;
+    public Player player;
     public float dashthreshold = 3f;
+    public int dashAmount = 0;
+    public int maxDashAmount = 2;
     public float dashamount = 2f;
     float offsetrightx; 
     float offsetleftx;
@@ -80,6 +83,14 @@ public class WallBounce : MonoBehaviour
             rb.linearVelocityX = -rb.linearVelocityX * dashamount;
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
+            player.dashAvailable = true;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
+        {
+            dashAmount ++;
         }
     }
 }
