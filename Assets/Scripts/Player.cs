@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     private int layermask;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        spriteRenderer.flipX = facingLeft;
         animator.SetFloat("Xvelocity", rb.linearVelocity.x);
         timeonground += Time.deltaTime;
         sincejump += Time.deltaTime;
