@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class collectChest : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() != null)
         {
@@ -11,7 +11,7 @@ public class collectChest : MonoBehaviour
         }
     }
 
-    private void collectingChest(Collision2D collision)
+    private void collectingChest(Collider2D collision)
     {
         GlobalLevelManager.collectedchests++;
         GetComponent<Animator>().SetTrigger("OpenChest");

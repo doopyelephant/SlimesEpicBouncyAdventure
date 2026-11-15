@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     [Header("Movement Details")]
     public float speed;
     public float dashSpeed;
-    public bool isDashing = false;
 
     public float maxspeedx;
     public float maxspeedy;
