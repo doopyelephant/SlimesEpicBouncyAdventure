@@ -18,6 +18,6 @@ public class coinCode : MonoBehaviour
         GlobalLevelManager.collectedcoins++;
         GetComponent<Animator>().SetTrigger("coinCollect");
         GetComponent<AudioSource>().PlayOneShot(sound);
-        Destroy(gameObject, 0);
+        Destroy(gameObject, 0.5f);
     }
 }
