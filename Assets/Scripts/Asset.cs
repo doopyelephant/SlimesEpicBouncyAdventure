@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class FrameRateManager
+public class FrameRateManager : MonoBehaviour
 {
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void SetTargetFrameRate()
