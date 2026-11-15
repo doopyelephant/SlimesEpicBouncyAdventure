@@ -41723,7 +41723,7 @@ MonoBehaviour:
   - {fileID: 619394800}
   - {fileID: 1104631549}
   - {fileID: 1480343990}
-  Levels: 01000000040000000200000003000000i
+  Levels: 01000000020000000300000004000000i
   coins: {fileID: 207818781}
   chests: {fileID: 1305034001}
   transition: {fileID: 641869570}
