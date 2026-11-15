@@ -62,12 +62,12 @@ namespace DefaultNamespace
                 }
             }
         }
-        public static void LoadLevel(int level)
+        public static void LoadLevel(int level,bool skiptransition = false)
         {
             if (loaded)
             {
                 currentlevel = level;
-                switcher.LoadLevel(level);
+                switcher.LoadLevel(level,skiptransition);
                 _chests += collectedchests;
                 collectedchests = 0;
                 _coins += collectedcoins;
@@ -94,7 +94,12 @@ namespace DefaultNamespace
         {
             collectedchests = 0;
             collectedcoins = 0;
-        switcher.ReloadLevel();
+            if(SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                SceneManager.LoadScene(1);
+                return;
+            }
+            switcher.ReloadLevel();
         }
     }
 }
