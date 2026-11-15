@@ -56,6 +56,8 @@ public class Player : MonoBehaviour
     {
         GlobalLevelManager.InitPlayer = transform.position;
         layermask = ~(1 << LayerMask.NameToLayer("Player"));
+        GlobalLevelManager.collectedchests = 0;
+        GlobalLevelManager.collectedcoins = 0;
     }
 
     // Update is called once per frame
@@ -121,6 +123,11 @@ public class Player : MonoBehaviour
         if (rb.linearVelocityX > 0) facingLeft = false;
         else if (rb.linearVelocityX < 0) facingLeft = true;
         if (Math.Abs(rb.linearVelocity.x) < 0.1f)
+        {
+            facingLeft = hor < 0;
+        }
+
+        if (Math.Abs(hor) > 0.1f)
         {
             facingLeft = hor < 0;
         }

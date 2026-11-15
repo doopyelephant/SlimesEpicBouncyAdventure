@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
     public class LevelSwitcher : MonoBehaviour
@@ -10,7 +11,8 @@ using UnityEngine.SceneManagement;
         public List<GameObject> PersistentObjects;
         public List<int> Levels;
         private bool ispayload = true;
-
+        public TMP_Text coins;
+        public TMP_Text chests;
         public IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(3f);

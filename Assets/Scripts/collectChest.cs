@@ -13,7 +13,7 @@ public class collectChest : MonoBehaviour
 
     private void collectingChest(Collision2D collision)
     {
-        GlobalLevelManager.chests++;
+        GlobalLevelManager.collectedchests++;
         GetComponent<Animator>().SetTrigger("OpenChest");
         Destroy(gameObject, 2);
     }

@@ -97,8 +97,10 @@ public class WallBounce : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold && bounces > 0)
+        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold &&
+            bounces > 0)
         {
+            GetComponentInChildren<Animator>().SetTrigger("HitWall");
             bounces--;
             timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable wall)");
@@ -108,6 +110,8 @@ public class WallBounce : MonoBehaviour
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
+
+
         }
     }
 
@@ -115,6 +119,7 @@ public class WallBounce : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bounceable tile") && lastVelocity.magnitude > dashthreshold && bounces > 0 && !player.isGrounded)
         {
+            GetComponentInChildren<Animator>().SetTrigger("HitWall");
             bounces--;
             timeleftshake = 1f;
             Debug.Log("Collided with wall (Tag: Bounceable tile)");
