@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public WallBounce wallBounce;
     public GameObject respawnPoint;
+    public soundManager soundManager;
 
     [Header("Movement Details")]
     public float speed;
@@ -118,7 +119,7 @@ public class Player : MonoBehaviour
     {
         float hor = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
 
-        if (hor != 0) rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse);
+        if (hor != 0) { rb.AddForce(new Vector2(hor, 0), ForceMode2D.Impulse); soundManager.playWalk(); }
         if (rb.linearVelocityX > 0) facingLeft = false;
         else if (rb.linearVelocityX < 0) facingLeft = true;
         if (Math.Abs(rb.linearVelocity.x) < 0.1f)
@@ -195,6 +196,8 @@ public class Player : MonoBehaviour
     public IEnumerator respawnPlayer()
     {
         animator.GetComponent<Animator>().SetTrigger("Death");
+        soundManager.playDeath();
+
         isDead = true;
         yield return new WaitForSecondsRealtime(1.5f);
         GlobalLevelManager.ReloadLevel();

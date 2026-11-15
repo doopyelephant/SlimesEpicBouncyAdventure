@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 public class WallBounce : MonoBehaviour
 {
     // set colliders of the camera boundaries
+    public soundManager soundManager;
+
     public BoxCollider2D RightWallCollider;
     public BoxCollider2D LeftWallCollider;
 
@@ -103,6 +105,8 @@ public class WallBounce : MonoBehaviour
             bounces > 0)
         {
             GetComponentInChildren<Animator>().SetTrigger("HitWall");
+            soundManager.playImpact();
+
             bounces--;
             timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable wall)");
@@ -123,6 +127,8 @@ public class WallBounce : MonoBehaviour
         if (collision.gameObject.CompareTag("Bounceable tile") && lastVelocity.magnitude > dashthreshold && bounces > 0 && !player.isGrounded)
         {
             GetComponentInChildren<Animator>().SetTrigger("HitWall");
+            soundManager.playImpact();
+
             bounces--;
             timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable tile)");
