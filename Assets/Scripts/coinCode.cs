@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class coinCode : MonoBehaviour
@@ -12,7 +13,7 @@ public class coinCode : MonoBehaviour
 
     private void collectCoin(Collider2D collision)
     {
-        collision.gameObject.GetComponent<Player>().coinAmount += 1;
+       GlobalLevelManager.coins++;
         GetComponent<Animator>().SetTrigger("coinCollect");
         Destroy(gameObject, 1);
     }

@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class collectChest : MonoBehaviour
@@ -12,7 +13,7 @@ public class collectChest : MonoBehaviour
 
     private void collectingChest(Collision2D collision)
     {
-        collision.gameObject.GetComponent<Player>().chestAmount += 1;
+        GlobalLevelManager.chests++;
         GetComponent<Animator>().SetTrigger("OpenChest");
         Destroy(gameObject, 2);
     }

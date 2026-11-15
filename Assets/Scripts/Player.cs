@@ -47,8 +47,6 @@ public class Player : MonoBehaviour
     private int mapamount = 0;
 
     [Header("Other details")]
-    public int coinAmount = 0;
-    public int chestAmount = 0;
     public GameObject GainedMapPiece;
     public TMP_Text MapAmount;
     public bool IsMapping = false;
