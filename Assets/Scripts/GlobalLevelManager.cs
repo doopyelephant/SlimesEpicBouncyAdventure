@@ -79,7 +79,7 @@ namespace DefaultNamespace
         {
             switcher = _switcher;
             loaded = true;
-            currentlevel = switcher.Levels[0];
+           // currentlevel = switcher.Levels[0];
             switcher.chests.text = chests.ToString();
             switcher.coins.text = coins.ToString();
         }

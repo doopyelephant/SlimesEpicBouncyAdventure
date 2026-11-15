@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.C) && Input.GetKey(KeyCode.H) && Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.T))
         {
-            GlobalLevelManager.LoadLevel(1);
+            GlobalLevelManager.LoadLevel(GlobalLevelManager.currentlevel + 1);
         }
         MapAmount.gameObject.SetActive(IsMapping);
         spriteRenderer.flipX = facingLeft;
