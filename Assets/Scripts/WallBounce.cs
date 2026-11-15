@@ -17,7 +17,7 @@ public class WallBounce : MonoBehaviour
     public float dashthreshold = 3f;
     public int dashAmount = 0;
     public int maxDashAmount = 2;
-    
+    public float bounceStrengthX = 2f;
     float offsetrightx; 
     float offsetleftx;
     public float ymul;
@@ -99,17 +99,20 @@ public class WallBounce : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold && bounces > 0)
+        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold &&
+            bounces > 0)
         {
+            GetComponentInChildren<Animator>().SetTrigger("HitWall");
             bounces--;
             timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable wall)");
 
             targetviewpos += new Vector3(transform.position.x - main.transform.position.x > 0 ? viewportmove : -viewportmove, 0, 0);
-            rb.linearVelocityX = -rb.linearVelocityX * dashAmount;
+            rb.linearVelocityX = -rb.linearVelocityX * bounceStrengthX;
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
+
 
             GetComponentInChildren<Animator>().SetTrigger("HitWall");
         }
@@ -126,11 +129,12 @@ public class WallBounce : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bounceable tile") && lastVelocity.magnitude > dashthreshold && bounces > 0 && !player.isGrounded)
         {
+            GetComponentInChildren<Animator>().SetTrigger("HitWall");
             bounces--;
             timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable tile)");
 
-            rb.linearVelocityX = -lastVelocity.x * dashAmount;
+            rb.linearVelocityX = -lastVelocity.x * bounceStrengthX;
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
