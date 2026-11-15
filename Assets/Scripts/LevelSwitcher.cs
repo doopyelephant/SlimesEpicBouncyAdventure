@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
     public class LevelSwitcher : MonoBehaviour
@@ -13,6 +14,8 @@ using UnityEngine.SceneManagement;
         private bool ispayload = true;
         public TMP_Text coins;
         public TMP_Text chests;
+        public transitionManager transition;
+
         public GameObject complete;
         public IEnumerator Start()
         {
@@ -32,13 +35,18 @@ using UnityEngine.SceneManagement;
 
         IEnumerator LoadLevelAsync(int level)
         {
+            
+            transition.outro();
+        yield return new WaitForSeconds(1.5f);
+
             Persist();
             SceneManager.LoadScene(Levels[level]);
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
             Debug.Log("loaded level " + SceneManager.GetActiveScene().name);
             Integrate(SceneManager.GetActiveScene());
-        }
+            transition.intro();
+    }
 
         private void Persist()
         {

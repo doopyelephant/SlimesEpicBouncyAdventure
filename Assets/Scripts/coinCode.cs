@@ -15,9 +15,9 @@ public class coinCode : MonoBehaviour
 
     private void collectCoin(Collider2D collision)
     {
-       GlobalLevelManager.collectedcoins++;
+        GlobalLevelManager.collectedcoins++;
         GetComponent<Animator>().SetTrigger("coinCollect");
         GetComponent<AudioSource>().PlayOneShot(sound);
-        Destroy(gameObject, 1);
+        Destroy(gameObject, 0);
     }
 }
