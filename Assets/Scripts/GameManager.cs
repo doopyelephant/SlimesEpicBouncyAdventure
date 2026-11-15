@@ -3,6 +3,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject options;
+
+    public float masterv;
+
+    public float sfxv;
+
+    public float musicv;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,4 +34,5 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
