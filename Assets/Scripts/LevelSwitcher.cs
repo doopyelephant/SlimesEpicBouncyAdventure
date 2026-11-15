@@ -9,6 +9,13 @@ using UnityEngine.SceneManagement;
     {
         public List<GameObject> PersistentObjects;
         public List<int> Levels;
+        private bool ispayload = true;
+
+        public IEnumerator Start()
+        {
+            yield return new WaitForSecondsRealtime(3f);
+            ispayload = false;
+        }
 
         public void Awake()
         {
@@ -47,6 +54,35 @@ using UnityEngine.SceneManagement;
                 }
 
                 DontDestroyOnLoad(obj);
+            }
+        }
+
+        public void ReloadLevel()
+        {
+            var tmp = new GameObject("Payload");
+            var payload = tmp.AddComponent<Payload>();
+            payload.name = "level";
+            payload.value = GlobalLevelManager.currentlevel;
+            DontDestroyOnLoad(tmp);
+            SceneManager.LoadScene(1);
+        }
+
+        public void Update()
+        {
+            if (ispayload)
+            {
+                var payload = GameObject.Find("Payload");
+
+                if (payload != null)
+                {
+                    var comp = payload.GetComponent<Payload>();
+                    if (comp.name == "level")
+                    {
+                        ispayload = false;
+                        GlobalLevelManager.LoadLevel(comp.value);
+                        Destroy(payload);
+                    }
+                }
             }
         }
 

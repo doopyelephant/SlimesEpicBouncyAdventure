@@ -61,6 +61,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.C) && Input.GetKey(KeyCode.H) && Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.T))
+        {
+            GlobalLevelManager.LoadLevel(1);
+        }
         MapAmount.gameObject.SetActive(IsMapping);
         spriteRenderer.flipX = facingLeft;
 
@@ -187,7 +191,7 @@ public class Player : MonoBehaviour
         animator.GetComponent<Animator>().SetTrigger("Death");
         isDead = true;
         yield return new WaitForSecondsRealtime(1.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GlobalLevelManager.ReloadLevel();
     }
 
     // Gizmos
