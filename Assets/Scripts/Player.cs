@@ -65,7 +65,21 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.C) && Input.GetKey(KeyCode.H) && Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.T))
         {
-            GlobalLevelManager.LoadLevel(GlobalLevelManager.currentlevel + 1);
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                GlobalLevelManager.LoadLevel(1);
+            }
+            else
+            {
+                if (GlobalLevelManager.currentlevel >= GlobalLevelManager.switcher.Levels.Count - 1)
+                {
+                    GlobalLevelManager.Complete();
+                }
+                else
+                {
+                    GlobalLevelManager.LoadLevel(GlobalLevelManager.currentlevel + 1);
+                }
+            }
         }
         MapAmount.gameObject.SetActive(IsMapping);
         spriteRenderer.flipX = facingLeft;
