@@ -9,6 +9,6 @@ public class FrameRateManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
 
         // Set your desired FPS cap (use -1 for unlimited)
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 30;
     }
 }
