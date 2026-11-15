@@ -32,6 +32,7 @@ public class WallBounce : MonoBehaviour
     private float camoffset;
     public float viewportspeedlag;
 
+    private Vector2 lastVelocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +58,12 @@ public class WallBounce : MonoBehaviour
         RightWallCollider.transform.parent = main.transform;
         LeftWallCollider.transform.parent = main.transform;
 
+    }
+
+    void FixedUpdate()
+    {
+        // Save velocity every physics step before a collision stops the player
+        lastVelocity = rb.linearVelocity;
     }
 
     // Update is called once per frame
@@ -98,6 +105,28 @@ public class WallBounce : MonoBehaviour
         if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
         {
             dashAmount ++;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bounceable tile") && lastVelocity.magnitude > dashthreshold)
+        {
+            Debug.Log("Collided with wall (Tag: Bounceable tile)");
+
+            rb.linearVelocityX = -lastVelocity.x * dashamount;
+            rb.linearVelocityY += yadd;
+            rb.linearVelocityY *= ymul;
+            player.dashAvailable = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bounceable tile") && rb.linearVelocity.magnitude > dashthreshold)
+        {
+            dashAmount ++;
+            //asdf
         }
     }
 }
