@@ -117,13 +117,6 @@ public class WallBounce : MonoBehaviour
             GetComponentInChildren<Animator>().SetTrigger("HitWall");
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
-        {
-            dashAmount++;
-        }
-    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -138,14 +131,6 @@ public class WallBounce : MonoBehaviour
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
-        }
-    }
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bounceable tile") && rb.linearVelocity.magnitude > dashthreshold && !player.isGrounded)
-        {
-            dashAmount++;
-            //asdf
         }
     }
 }
