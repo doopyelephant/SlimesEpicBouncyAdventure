@@ -13,6 +13,8 @@ public class collectOrb : MonoBehaviour
     private void collectingOrbs(Collider2D collision)
     {
         collision.gameObject.GetComponent<WallBounce>().dashAmount++;
-        Destroy(gameObject, 0);
+        Destroy(GetComponent<CircleCollider2D>(), 0);
+        GetComponent<Animator>().SetTrigger("OrbCollected");
+        Destroy(gameObject, 0.55f);
     }
 }
