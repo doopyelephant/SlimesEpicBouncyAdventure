@@ -15,13 +15,17 @@ namespace DefaultNamespace
         private static int _coins = 0;
         private static int _collectedcoins = 0;
         private static int _collectedchests = 0;
+        public static float time;
         public static int collectedchests
         {
             get { return _collectedchests; }
             set
             {
                _collectedchests = value;
-                switcher.chests.text = chests.ToString();
+               if (switcher != null)
+               {
+                   switcher.chests.text = chests.ToString();
+               }
             }
         }
         public static int collectedcoins
@@ -30,7 +34,10 @@ namespace DefaultNamespace
             set
             {
                 _collectedcoins = value;
-                switcher.coins.text = coins.ToString();
+                if (switcher != null)
+                {
+                    switcher.coins.text = coins.ToString();
+                }
             }
         }
         public static int chests {
@@ -38,15 +45,21 @@ namespace DefaultNamespace
             set
             {
                 _chests = value;
-                switcher.chests.text = _chests.ToString();
+                if (switcher != null)
+                {
+                    switcher.chests.text = _chests.ToString();
+                }
             }
         }
         public static int coins {
             get { return _coins + collectedcoins; }
             set
             {
-                    _coins = value;
+                _coins = value;
+                if (switcher != null)
+                {
                     switcher.coins.text = _coins.ToString();
+                }
             }
         }
         public static void LoadLevel(int level)
@@ -69,6 +82,12 @@ namespace DefaultNamespace
             currentlevel = switcher.Levels[0];
             switcher.chests.text = chests.ToString();
             switcher.coins.text = coins.ToString();
+        }
+
+        public static void Complete()
+        {
+            switcher.complete.SetActive(true);
+            Time.timeScale = 0;
         }
 
         public static void ReloadLevel()

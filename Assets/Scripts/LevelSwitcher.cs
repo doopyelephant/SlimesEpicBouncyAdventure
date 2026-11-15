@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
         private bool ispayload = true;
         public TMP_Text coins;
         public TMP_Text chests;
+        public GameObject complete;
         public IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(3f);
@@ -71,6 +72,7 @@ using UnityEngine.SceneManagement;
 
         public void Update()
         {
+            GlobalLevelManager.time += Time.deltaTime;
             if (ispayload)
             {
                 var payload = GameObject.Find("Payload");
