@@ -43,6 +43,10 @@ public class Player : MonoBehaviour
 
     private int layermask;
     private int mapamount = 0;
+
+    [Header("Other details")]
+    public int coinAmount = 0;
+    public int chestAmount = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
