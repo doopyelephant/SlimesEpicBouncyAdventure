@@ -39,7 +39,6 @@ using UnityEngine.SceneManagement;
                     obj.transform.position = GlobalLevelManager.InitPlayer;
                     obj.GetComponent<WallBounce>().targetviewpos = GlobalLevelManager.InitCamera;
                     obj.GetComponent<Player>().IsMapping = false;
-                    GameObject.FindGameObjectWithTag("parallaxTag").GetComponent<Parallax>().cam = obj;
                 }
 
                 if (obj.gameObject.CompareTag("MainCamera"))
