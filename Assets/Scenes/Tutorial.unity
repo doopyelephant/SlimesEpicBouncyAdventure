@@ -12329,7 +12329,7 @@ MonoBehaviour:
   - {fileID: 619394800}
   - {fileID: 1104631549}
   - {fileID: 1480343990}
-  Levels: 0100000002000000i
+  Levels: 010000000200000003000000i
   coins: {fileID: 207818781}
   chests: {fileID: 1305034001}
   complete: {fileID: 1915101860}
