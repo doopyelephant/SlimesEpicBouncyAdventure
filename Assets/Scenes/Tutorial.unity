@@ -11264,6 +11264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   options: {fileID: 1505517559}
+  masterv: 0
+  sfxv: 0
+  musicv: 0
 --- !u!4 &1210317965
 Transform:
   m_ObjectHideFlags: 0
@@ -11838,7 +11841,7 @@ Transform:
   m_GameObject: {fileID: 1480343990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -13058,8 +13061,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: dashAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: maxbounces
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: shakeamount
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewportmove
@@ -13083,7 +13094,7 @@ PrefabInstance:
       objectReference: {fileID: 397821928}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewportspeedlag
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: RightWallCollider
