@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using DefaultNamespace;
 using NUnit.Framework;
+using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
 
     private bool isGrounded = true;
     private bool isDead = false;
+    public bool isGrounded = true;
 
     public float jumpcooldown;
 
@@ -47,10 +50,14 @@ public class Player : MonoBehaviour
     [Header("Other details")]
     public int coinAmount = 0;
     public int chestAmount = 0;
+    public GameObject GainedMapPiece;
+    public TMP_Text MapAmount;
+    public bool IsMapping = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GlobalLevelManager.InitPlayer = transform.position;
         layermask = ~(1 << LayerMask.NameToLayer("Player"));
     }
 
@@ -71,6 +78,9 @@ public class Player : MonoBehaviour
                 dashAvailable = true;
                 wallBounce.dashAmount = 0;
             }
+            wallBounce.bounces = wallBounce.maxbounces;
+            dashAvailable = true;
+            wallBounce.dashAmount = 0;
         }
         
     }
@@ -78,12 +88,30 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D other)
     {
 
-        if (other.gameObject.GetComponent(typeof(MapPiece)) != null)
+        if (other.gameObject.GetComponent(typeof(MapPiece)) != null && IsMapping)
         {
+
+            GainedMapPiece.SetActive(true);
+            StartCoroutine(FalseMapPiece());
             Destroy(other.gameObject);
             mapamount += 1;
+            MapAmount.text = mapamount.ToString() + "/4";
+
+            Time.timeScale = 0f;
         }
     }
+
+    public IEnumerator FalseMapPiece()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        GainedMapPiece.SetActive(false);
+        Time.timeScale = 1f;
+        if (mapamount >= 4)
+        {
+            GlobalLevelManager.LoadLevel(1);
+        }
+    }
+
 
     private void HandleMovement()
     {

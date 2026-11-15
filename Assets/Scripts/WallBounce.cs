@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,16 +25,23 @@ public class WallBounce : MonoBehaviour
 
     public float viewportmove;
 
-    private Vector3 targetviewpos;
+    public Vector3 targetviewpos;
 
     public float viewspeed;
     public float randomstrength;
     private float camoffset;
     public float viewportspeedlag;
 
+    private Vector2 lastVelocity;
+
+    public int maxbounces;
+    public int bounces;
+
+    public float timeleftshake = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GlobalLevelManager.InitCamera = main.transform.position;
         targetviewpos = main.transform.position;
         camoffset = main.transform.position.y - transform.position.y;
         // set offset of right collider
@@ -54,12 +64,24 @@ public class WallBounce : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+        // Save velocity every physics step before a collision stops the player
+        lastVelocity = rb.linearVelocity;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (timeleftshake > 0f)
+        {
+            timeleftshake -= Time.deltaTime;
+            main.transform.position += new Vector3(Random.Range(-randomstrength, randomstrength),
+                                           Random.Range(-randomstrength, randomstrength), 0);
+        }
         targetviewpos = new  Vector3(targetviewpos.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, targetviewpos.z);
         main.transform.position = new Vector3(main.transform.position.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, main.transform.position.z);
-        transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 + 0.1f,RightWallCollider.transform.position.x - offsetrightx * 2 - 0.1f),transform.position.y,transform.position.z);
+        transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 - 0.05f,RightWallCollider.transform.position.x - offsetrightx * 2 + 0.05f),transform.position.y,transform.position.z);
         if (Vector3.Distance(main.transform.position, targetviewpos) > 1f)
         {
             main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position) +
@@ -75,8 +97,10 @@ public class WallBounce : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
+        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold && bounces > 0)
         {
+            bounces--;
+            timeleftshake = 1f;
             Debug.Log("Collided with wall (Tag: Bounceable wall)");
 
             targetviewpos += new Vector3(transform.position.x - main.transform.position.x > 0 ? viewportmove : -viewportmove, 0, 0);
@@ -88,11 +112,37 @@ public class WallBounce : MonoBehaviour
             GetComponentInChildren<Animator>().SetTrigger("HitWall");
         }
     }
+
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
         {
             dashAmount ++;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bounceable tile") && lastVelocity.magnitude > dashthreshold && bounces > 0 && !player.isGrounded)
+        {
+            bounces--;
+            timeleftshake = 1f;
+            Debug.Log("Collided with wall (Tag: Bounceable tile)");
+
+            rb.linearVelocityX = -lastVelocity.x * dashamount;
+            rb.linearVelocityY += yadd;
+            rb.linearVelocityY *= ymul;
+            player.dashAvailable = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bounceable tile") && rb.linearVelocity.magnitude > dashthreshold && !player.isGrounded)
+        {
+            dashAmount ++;
+            //asdf
         }
     }
 }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bounceable wall
+  - Bounceable tile
   layers:
   - Default
   - TransparentFX
