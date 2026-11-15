@@ -6,7 +6,7 @@ namespace DefaultNamespace
 {
     public static class GlobalLevelManager
     {
-        private static LevelSwitcher switcher;
+        public static LevelSwitcher switcher;
         private static bool loaded = false;
         public static int currentlevel = 0;
         public static Vector3 InitPlayer;
