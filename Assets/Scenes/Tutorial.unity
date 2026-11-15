@@ -12804,6 +12804,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: IsMapping
       value: 1
       objectReference: {fileID: 0}
@@ -12811,6 +12815,14 @@ PrefabInstance:
       propertyPath: MapAmount
       value: 
       objectReference: {fileID: 1918389788}
+    - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: dashSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: maxspeedy
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: wallBounce
       value: 
@@ -13077,11 +13089,15 @@ PrefabInstance:
       objectReference: {fileID: 1007751006}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewspeed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: maxbounces
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+      propertyPath: shakeamount
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewportmove

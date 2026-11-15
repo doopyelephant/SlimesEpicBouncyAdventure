@@ -102,7 +102,7 @@ public class WallBounce : MonoBehaviour
         if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold && bounces > 0)
         {
             bounces--;
-            timeleftshake = 1f;
+            timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable wall)");
 
             targetviewpos += new Vector3(transform.position.x - main.transform.position.x > 0 ? viewportmove : -viewportmove, 0, 0);
