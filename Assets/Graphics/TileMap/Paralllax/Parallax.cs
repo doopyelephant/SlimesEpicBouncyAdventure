@@ -14,8 +14,8 @@ public class parallax : MonoBehaviour
     [SerializeField] private Transform bottom;
     public Transform cam;
 
-    [SerializeField] private float wrapMargin1 = 10f;
-    [SerializeField] private float wrapMargin2 = 7f;
+    [SerializeField] private float wrapMargin1 = 20f;
+    [SerializeField] private float wrapMargin2 = 16f;
 
     private Transform selfTransform;
     private float length;
