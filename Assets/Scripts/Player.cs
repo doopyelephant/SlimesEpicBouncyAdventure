@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using NUnit.Framework;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public WallBounce wallBounce;
+    public GameObject respawnPoint;
 
     [Header("Movement Details")]
     public float speed;
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
     private float sincejump = 0f;
 
     private bool isGrounded = true;
+    private bool isDead = false;
 
     public float jumpcooldown;
 
@@ -51,16 +55,20 @@ public class Player : MonoBehaviour
     {
         spriteRenderer.flipX = facingLeft;
 
-        HandleAnimation();
-        HandleMovement();
-        HandleDash();
-        HandleJump();
-        
-        if (isGrounded)
+        if (!isDead)
         {
-            dashAvailable = true;
-            wallBounce.dashAmount = 0;
+            HandleAnimation();
+            HandleMovement();
+            HandleDash();
+            HandleJump();
+
+            if (isGrounded)
+            {
+                dashAvailable = true;
+                wallBounce.dashAmount = 0;
+            }
         }
+        
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -146,7 +154,13 @@ public class Player : MonoBehaviour
         }
         rb.linearVelocity = new Vector2(Math.Clamp(rb.linearVelocityX, -maxspeedx, maxspeedx), Math.Clamp(rb.linearVelocityY, -maxspeedy, maxspeedy));
     }
-
+    public IEnumerator respawnPlayer()
+    {
+        animator.GetComponent<Animator>().SetTrigger("Death");
+        isDead = true;
+        yield return new WaitForSecondsRealtime(1.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     // Gizmos
     private void OnDrawGizmos()

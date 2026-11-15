@@ -84,6 +84,8 @@ public class WallBounce : MonoBehaviour
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
+
+            GetComponentInChildren<Animator>().SetTrigger("HitWall");
         }
     }
     void OnTriggerExit(Collider other)
