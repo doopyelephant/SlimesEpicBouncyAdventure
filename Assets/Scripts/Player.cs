@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     private float timeonground = 0f;
     private float sincejump = 0f;
 
-    private bool isGrounded = true;
+    public bool isGrounded = true;
 
     public float jumpcooldown;
 
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         
         if (isGrounded)
         {
+            wallBounce.bounces = wallBounce.maxbounces;
             dashAvailable = true;
             wallBounce.dashAmount = 0;
         }
