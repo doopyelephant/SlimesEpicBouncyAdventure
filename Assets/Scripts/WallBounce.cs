@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,16 +25,18 @@ public class WallBounce : MonoBehaviour
 
     public float viewportmove;
 
-    private Vector3 targetviewpos;
+    public Vector3 targetviewpos;
 
     public float viewspeed;
     public float randomstrength;
     private float camoffset;
     public float viewportspeedlag;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GlobalLevelManager.InitCamera = main.transform.position;
         targetviewpos = main.transform.position;
         camoffset = main.transform.position.y - transform.position.y;
         // set offset of right collider
@@ -59,7 +64,7 @@ public class WallBounce : MonoBehaviour
     {
         targetviewpos = new  Vector3(targetviewpos.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, targetviewpos.z);
         main.transform.position = new Vector3(main.transform.position.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, main.transform.position.z);
-        transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 + 0.1f,RightWallCollider.transform.position.x - offsetrightx * 2 - 0.1f),transform.position.y,transform.position.z);
+        transform.position = new Vector3(Math.Clamp(transform.position.x,LeftWallCollider.transform.position.x - offsetleftx * 2 - 0.05f,RightWallCollider.transform.position.x - offsetrightx * 2 + 0.05f),transform.position.y,transform.position.z);
         if (Vector3.Distance(main.transform.position, targetviewpos) > 1f)
         {
             main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position) +
@@ -86,6 +91,8 @@ public class WallBounce : MonoBehaviour
             player.dashAvailable = true;
         }
     }
+
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
