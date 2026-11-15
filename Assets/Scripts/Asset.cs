@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class FrameRateManager : MonoBehaviour
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    private static void SetTargetFrameRate()
+    private void Awake()
     {
         // Disable VSync so Application.targetFrameRate is not ignored
         QualitySettings.vSyncCount = 0;
