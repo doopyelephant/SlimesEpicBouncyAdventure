@@ -28,16 +28,18 @@ using UnityEngine.SceneManagement;
             GlobalLevelManager.Init(this);
         }
 
-        public void LoadLevel(int level)
+        public void LoadLevel(int level, bool skiptransition = false)
         {
-           StartCoroutine(LoadLevelAsync(level));
+           StartCoroutine(LoadLevelAsync(level,skiptransition));
         }
 
-        IEnumerator LoadLevelAsync(int level)
+        IEnumerator LoadLevelAsync(int level, bool skiptransition = false)
         {
-            
-            transition.outro();
-        yield return new WaitForSeconds(1.5f);
+            if (!skiptransition)
+            {
+                transition.outro();
+                yield return new WaitForSeconds(1.5f);
+            }
 
             Persist();
             SceneManager.LoadScene(Levels[level]);
@@ -45,8 +47,11 @@ using UnityEngine.SceneManagement;
             yield return new WaitForEndOfFrame();
             Debug.Log("loaded level " + SceneManager.GetActiveScene().name);
             Integrate(SceneManager.GetActiveScene());
-            transition.intro();
-    }
+            if (!skiptransition)
+            {
+                transition.intro();
+            }
+        }
 
         private void Persist()
         {
@@ -88,10 +93,10 @@ using UnityEngine.SceneManagement;
                 if (payload != null)
                 {
                     var comp = payload.GetComponent<Payload>();
-                    if (comp.name == "level")
+                    if (comp.name == "level" && comp.value != 0)
                     {
                         ispayload = false;
-                        GlobalLevelManager.LoadLevel(comp.value);
+                        GlobalLevelManager.LoadLevel(comp.value,true);
                         Destroy(payload);
                     }
                 }
