@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class coinCode : MonoBehaviour
 {
+    [SerializeField] private AudioClip sound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() != null)
@@ -15,6 +17,7 @@ public class coinCode : MonoBehaviour
     {
        GlobalLevelManager.collectedcoins++;
         GetComponent<Animator>().SetTrigger("coinCollect");
+        GetComponent<AudioSource>().PlayOneShot(sound);
         Destroy(gameObject, 1);
     }
 }
