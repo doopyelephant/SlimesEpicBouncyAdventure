@@ -10,6 +10,8 @@ namespace DefaultNamespace
         public static int currentlevel = 0;
         public static Vector3 InitPlayer;
         public static Vector3 InitCamera;
+        public static int chests;
+        public static int coins;
         public static void LoadLevel(int level)
         {
             if (loaded)
