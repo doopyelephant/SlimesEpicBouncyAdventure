@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator FalseMapPiece()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(1f);
         GainedMapPiece.SetActive(false);
         Time.timeScale = 1f;
         if (mapamount >= 4)
