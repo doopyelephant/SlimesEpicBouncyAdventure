@@ -10097,6 +10097,12 @@ Tilemap:
   - serializedVersion: 2
     m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 65ad228038130734db8bd39f02bff1e9, type: 2}
+  - serializedVersion: 2
+    m_RefCount: 0
+    m_Data: {fileID: 11400000, guid: 115b6add452c9254a829f73a8f9a47dd, type: 2}
+  - serializedVersion: 2
+    m_RefCount: 0
+    m_Data: {fileID: 11400000, guid: a7f76271c384e0844a43fd51f8dce6b2, type: 2}
   m_TileSpriteArray:
   - serializedVersion: 2
     m_RefCount: 31
@@ -10143,6 +10149,12 @@ Tilemap:
   - serializedVersion: 2
     m_RefCount: 1
     m_Data: {fileID: -1866405640, guid: 4725c95618c1b7441a34ba4d845c926c, type: 3}
+  - serializedVersion: 2
+    m_RefCount: 0
+    m_Data: {fileID: -5811286331236971599, guid: d5b2b69b1231be64096167278f701be7, type: 3}
+  - serializedVersion: 2
+    m_RefCount: 0
+    m_Data: {fileID: -7167014559487915728, guid: 23f294ae822694040880366e6f86cd3b, type: 3}
   m_TileMatrixArray:
   - serializedVersion: 2
     m_RefCount: 824
@@ -10771,6 +10783,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77184da8132942b4583c6391607ce503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!4 &1007751008 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
+  m_PrefabInstance: {fileID: 3892081293664986761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009772354
 GameObject:
   m_ObjectHideFlags: 0
@@ -11264,6 +11281,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   options: {fileID: 1505517559}
+  masterv: 0
+  sfxv: 0
+  musicv: 0
 --- !u!4 &1210317965
 Transform:
   m_ObjectHideFlags: 0
@@ -11295,7 +11315,6 @@ MonoBehaviour:
   - {fileID: 1007751000}
   - {fileID: 519420028}
   - {fileID: 619394800}
-  - {fileID: 1480343990}
   - {fileID: 1104631549}
   Levels: 0000000001000000i
 --- !u!1 &1287519439
@@ -11838,7 +11857,7 @@ Transform:
   m_GameObject: {fileID: 1480343990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.96, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -11864,12 +11883,14 @@ MonoBehaviour:
   parallaxEffect1: -0.5
   parallaxEffect2: -0.5
   parallaxEffect3: -0.3
-  bg1: {fileID: 1507409232}
-  bg2: {fileID: 1287519439}
-  bg3: {fileID: 1670693354}
-  bottom: {fileID: 787878524}
-  top: {fileID: 335087106}
-  cam: {fileID: 1007751000}
+  bg1: {fileID: 1507409233}
+  bg2: {fileID: 1287519440}
+  bg3: {fileID: 1670693355}
+  top: {fileID: 335087108}
+  bottom: {fileID: 787878526}
+  cam: {fileID: 1007751008}
+  wrapMargin1: 7
+  wrapMargin2: 5
 --- !u!1 &1505517559
 GameObject:
   m_ObjectHideFlags: 0
@@ -12400,7 +12421,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 193.25717, w: 48.820442}
+  m_margin: {x: -11.810814, y: -2.083334, z: 203.84631, w: 50.596413}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -12524,7 +12545,7 @@ Transform:
   m_GameObject: {fileID: 1876230303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12963,11 +12984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.67
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.58
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1369982250068715294, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: m_LocalPosition.z

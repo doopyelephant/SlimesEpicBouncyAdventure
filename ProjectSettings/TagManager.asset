@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bounceable wall
   - Bounceable tile
+  - parallaxTag
   layers:
   - Default
   - TransparentFX

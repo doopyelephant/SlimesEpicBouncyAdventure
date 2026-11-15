@@ -3,49 +3,66 @@ using UnityEngine;
 
 public class parallax : MonoBehaviour
 {
-    private float length;
-
-    private float startPos;
-    private float startPos2;
-
     [SerializeField] private float parallaxEffect1;
     [SerializeField] private float parallaxEffect2;
     [SerializeField] private float parallaxEffect3;
 
-    [SerializeField] private GameObject bg1;
-    [SerializeField] private GameObject bg2;
-    [SerializeField] private GameObject bg3;
+    [SerializeField] private Transform bg1;
+    [SerializeField] private Transform bg2;
+    [SerializeField] private Transform bg3;
+    [SerializeField] private Transform top;
+    [SerializeField] private Transform bottom;
+    public Transform cam;
 
-    [SerializeField] private GameObject bottom;
-    [SerializeField] private GameObject top;
+    [SerializeField] private float wrapMargin1 = 7f;
+    [SerializeField] private float wrapMargin2 = 5f;
 
-    [SerializeField] private GameObject cam;
+    private Transform selfTransform;
+    private float length;
+    private float startPos1;
+    private float startPos2;
 
+    private void Awake()
+    {
+        selfTransform = transform;
+        if (cam == null) cam = Camera.main.transform;
+    }
 
     private void Start()
     {
-        startPos = transform.position.x;
-        startPos2 = transform.position.x;
+        startPos1 = startPos2 = selfTransform.position.x;
         length = GetComponentInChildren<SpriteRenderer>().bounds.size.x;
     }
 
-    private void FixedUpdate()
+    // LateUpdate: runs after the camera has moved this frame -> no jitter
+    private void LateUpdate()
     {
-        bg1.transform.position = new Vector3(startPos + cam.transform.position.x * parallaxEffect1, transform.position.y);
-        bg2.transform.position = new Vector3(startPos + cam.transform.position.x * parallaxEffect2, transform.position.y);
-        bg3.transform.position = new Vector3(startPos2 + cam.transform.position.x * parallaxEffect3, transform.position.y);
+        float camX = cam.position.x;
+        float y = selfTransform.position.y;
 
-        top.transform.position = new Vector3(startPos + cam.transform.position.x * parallaxEffect2, top.transform.position.y);
-        bottom.transform.position = new Vector3(startPos + cam.transform.position.x * parallaxEffect2, bottom.transform.position.y);
+        SetX(bg1, startPos1 + camX * parallaxEffect1, y);
+        SetX(bg2, startPos1 + camX * parallaxEffect2, y);
+        SetX(bg3, startPos2 + camX * parallaxEffect3, y);
 
-        float temp1 = bg1.transform.position.x * (1 - parallaxEffect1);
+        float x2 = startPos1 + camX * parallaxEffect2;
+        SetX(top, x2, top.position.y);
+        SetX(bottom, x2, bottom.position.y);
 
-        if (temp1+7 > startPos + length) startPos -= length;
-        else if (temp1-7 < startPos - length) startPos += length;
+        // Infinite-scroll wrapping
+        float temp = bg1.position.x * (1f - parallaxEffect1);
 
-        float temp2 = bg1.transform.position.x * (1 - parallaxEffect1);
+        if (temp + wrapMargin1 > startPos1 + length) startPos1 -= length;
+        else if (temp - wrapMargin1 < startPos1 - length) startPos1 += length;
 
-        if (temp2 + 5 > startPos2 + length) startPos2 -= length;
-        else if (temp2 - 5 < startPos2 - length) startPos2 += length;
+        if (temp + wrapMargin2 > startPos2 + length) startPos2 -= length;
+        else if (temp - wrapMargin2 < startPos2 - length) startPos2 += length;
+    }
+
+    private static void SetX(Transform t, float x, float y)
+    {
+        Vector3 p = t.position;
+        p.x = x;
+        p.y = y;
+        t.position = p; // keeps Z intact
     }
 }
