@@ -7,6 +7,7 @@ public class spikeCode : MonoBehaviour
         Debug.Log("Collision!" + collision.gameObject);
         if (collision.gameObject.GetComponent<Player>() != null)
         {
+            collision.gameObject.GetComponent<Player>().rb.linearVelocity = new Vector2(0, 0);
             collision.gameObject.GetComponent<Player>().StartCoroutine("respawnPlayer");
         }
     }

@@ -12817,7 +12817,7 @@ PrefabInstance:
       objectReference: {fileID: 1918389788}
     - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: dashSpeed
-      value: 500
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 56225721884056225, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: maxspeedy
@@ -13089,7 +13089,7 @@ PrefabInstance:
       objectReference: {fileID: 1007751006}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewspeed
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: maxbounces
@@ -13097,11 +13097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: shakeamount
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewportmove
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: dashthreshold
@@ -13121,7 +13121,7 @@ PrefabInstance:
       objectReference: {fileID: 397821928}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: viewportspeedlag
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8811238407874816830, guid: 5285023d00a2ad54fa3132c8c398c6f3, type: 3}
       propertyPath: RightWallCollider

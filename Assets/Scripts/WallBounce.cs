@@ -38,6 +38,8 @@ public class WallBounce : MonoBehaviour
     public int bounces;
 
     public float timeleftshake = 0f;
+
+    public float shakeamount = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -76,8 +78,8 @@ public class WallBounce : MonoBehaviour
         if (timeleftshake > 0f)
         {
             timeleftshake -= Time.deltaTime;
-            main.transform.position += new Vector3(Random.Range(-randomstrength, randomstrength),
-                                           Random.Range(-randomstrength, randomstrength), 0);
+            main.transform.position += new Vector3(Random.Range(-randomstrength, randomstrength) * shakeamount,
+                                           Random.Range(-randomstrength, randomstrength) * shakeamount, 0);
         }
         targetviewpos = new  Vector3(targetviewpos.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, targetviewpos.z);
         main.transform.position = new Vector3(main.transform.position.x, ((transform.position.y + camoffset) - main.transform.position.y) * viewportspeedlag * Time.deltaTime + main.transform.position.y, main.transform.position.z);
@@ -85,8 +87,8 @@ public class WallBounce : MonoBehaviour
         if (Vector3.Distance(main.transform.position, targetviewpos) > 1f)
         {
             main.transform.position += Time.deltaTime * viewspeed * (targetviewpos - main.transform.position) +
-                                       new Vector3(Random.Range(-randomstrength, randomstrength),
-                                           Random.Range(-randomstrength, randomstrength), 0);
+                                       new Vector3(Random.Range(-randomstrength, randomstrength) * shakeamount,
+                                           Random.Range(-randomstrength, randomstrength) * shakeamount, 0);
         }
         else if (Vector3.Distance(main.transform.position, targetviewpos) > 0.1f)
         {
@@ -108,6 +110,15 @@ public class WallBounce : MonoBehaviour
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
+
+            GetComponentInChildren<Animator>().SetTrigger("HitWall");
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bounceable wall") && rb.linearVelocity.magnitude > dashthreshold)
+        {
+            dashAmount++;
         }
     }
 
@@ -116,13 +127,21 @@ public class WallBounce : MonoBehaviour
         if (collision.gameObject.CompareTag("Bounceable tile") && lastVelocity.magnitude > dashthreshold && bounces > 0 && !player.isGrounded)
         {
             bounces--;
-            timeleftshake = 1f;
+            timeleftshake = 0.5f;
             Debug.Log("Collided with wall (Tag: Bounceable tile)");
 
             rb.linearVelocityX = -lastVelocity.x * bounceStrengthX;
             rb.linearVelocityY += yadd;
             rb.linearVelocityY *= ymul;
             player.dashAvailable = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bounceable tile") && rb.linearVelocity.magnitude > dashthreshold && !player.isGrounded)
+        {
+            dashAmount++;
+            //asdf
         }
     }
 }
