@@ -28,7 +28,7 @@ public class SetStat : MonoBehaviour
                 text.text = GlobalLevelManager.chests.ToString();
                 break;
             case 2:
-                text.text = $"{Math.Floor(GlobalLevelManager.time / (60*60)).ToString()}:{Math.Floor((GlobalLevelManager.time % (60*60)) /(60)).ToString()}:{(GlobalLevelManager.time % (60)).ToString()}";
+                text.text = $"{Math.Floor(GlobalLevelManager.time / (60*60)).ToString()}:{Math.Floor((GlobalLevelManager.time % (60*60)) /(60)).ToString()}:{Math.Floor(GlobalLevelManager.time % (60)).ToString()}";
                 break;
         }
     }
