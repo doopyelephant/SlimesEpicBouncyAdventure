@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
 {
@@ -25,6 +26,12 @@ namespace DefaultNamespace
         {
             switcher = _switcher;
             loaded = true;
+            currentlevel = switcher.Levels[0];
+        }
+
+        public static void ReloadLevel()
+        {
+        switcher.ReloadLevel();
         }
     }
 }
