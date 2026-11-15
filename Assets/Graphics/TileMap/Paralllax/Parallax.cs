@@ -25,7 +25,6 @@ public class parallax : MonoBehaviour
     private void Awake()
     {
         selfTransform = transform;
-        if (cam == null) cam = Camera.main.transform;
     }
 
     private void Start()
@@ -37,25 +36,29 @@ public class parallax : MonoBehaviour
     // LateUpdate: runs after the camera has moved this frame -> no jitter
     private void LateUpdate()
     {
-        float camX = cam.position.x;
-        float y = selfTransform.position.y;
+        if (cam != null)
+        {
+            float camX = cam.position.x;
+            float y = selfTransform.position.y;
 
-        SetX(bg1, startPos1 + camX * parallaxEffect1, y);
-        SetX(bg2, startPos1 + camX * parallaxEffect2, y);
-        SetX(bg3, startPos2 + camX * parallaxEffect3, y);
+            SetX(bg1, startPos1 + camX * parallaxEffect1, y);
+            SetX(bg2, startPos1 + camX * parallaxEffect2, y);
+            SetX(bg3, startPos2 + camX * parallaxEffect3, y);
 
-        float x2 = startPos1 + camX * parallaxEffect2;
-        SetX(top, x2, top.position.y);
-        SetX(bottom, x2, bottom.position.y);
+            float x2 = startPos1 + camX * parallaxEffect2;
+            SetX(top, x2, top.position.y);
+            SetX(bottom, x2, bottom.position.y);
 
-        // Infinite-scroll wrapping
-        float temp = bg1.position.x * (1f - parallaxEffect1);
+            // Layer group 1 (bg1, bg2, top, bottom)
+            float temp1 = camX * (1f - parallaxEffect1);
+            if (temp1 + wrapMargin1 > startPos1 + length) startPos1 += length;
+            else if (temp1 - wrapMargin1 < startPos1 - length) startPos1 -= length;
 
-        if (temp + wrapMargin1 > startPos1 + length) startPos1 -= length;
-        else if (temp - wrapMargin1 < startPos1 - length) startPos1 += length;
-
-        if (temp + wrapMargin2 > startPos2 + length) startPos2 -= length;
-        else if (temp - wrapMargin2 < startPos2 - length) startPos2 += length;
+            // Layer 3 (bg3), uses its own effect value
+            float temp2 = camX * (1f - parallaxEffect3);
+            if (temp2 + wrapMargin2 > startPos2 + length) startPos2 += length;
+            else if (temp2 - wrapMargin2 < startPos2 - length) startPos2 -= length;
+        }
     }
 
     private static void SetX(Transform t, float x, float y)
